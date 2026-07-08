@@ -11,7 +11,7 @@
     <!-- Google Fonts: Poppins (body) + Press Start 2P (Minecraft-style headings) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Press+Start+2P&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&family=Press+Start+2P&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <style>
 /* ==========================================================================
@@ -23,48 +23,49 @@
    01 · DESIGN TOKENS
 ---------------------------------------------------------------------------- */
 :root {
-    /* Brand */
-    --green: #3FB950;
-    --green-2: #2EA043;
-    --accent: #58A6FF;
-    --accent-2: #1F6FEB;
+    /* Brand — premium cinematic emerald */
+    --green: #34D399;
+    --green-2: #22C55E;
+    --accent: #6EE7B7;
+    --accent-2: #10B981;
 
-    /* Surfaces */
-    --bg: #0D1117;
-    --bg-2: #0A0E14;
-    --bg-3: #11161D;
-    --card: rgba(255, 255, 255, .05);
-    --card-hi: rgba(255, 255, 255, .08);
-    --border: rgba(255, 255, 255, .08);
-    --border-hi: rgba(255, 255, 255, .16);
+    /* Surfaces — deep obsidian */
+    --bg: #09090B;
+    --bg-2: #060608;
+    --bg-3: #101114;
+    --card: rgba(255, 255, 255, .06);
+    --card-hi: rgba(255, 255, 255, .10);
+    --border: rgba(255, 255, 255, .12);
+    --border-hi: rgba(255, 255, 255, .22);
 
     /* Text */
     --text: #FFFFFF;
-    --text-2: #B8C1CC;
-    --text-3: #7A8693;
+    --text-2: #B3B3B3;
+    --text-3: #6B7076;
 
     /* Minecraft palette accents */
-    --grass: #5cb85c;
-    --dirt: #8b5a2b;
+    --grass: #34D399;
+    --dirt: #a06b3f;
     --stone: #6e6e6e;
     --diamond: #5cdbd5;
     --gold: #f0c419;
 
     /* Radius & spacing */
-    --r-sm: 10px;
-    --r-md: 14px;
-    --r-lg: 20px;
-    --r-xl: 28px;
+    --r-sm: 12px;
+    --r-md: 16px;
+    --r-lg: 24px;
+    --r-xl: 32px;
 
-    /* Shadow */
-    --shadow-sm: 0 4px 16px rgba(0, 0, 0, .25);
-    --shadow-md: 0 12px 40px rgba(0, 0, 0, .35);
-    --shadow-lg: 0 30px 80px rgba(0, 0, 0, .55);
-    --glow-green: 0 0 0 1px rgba(63, 185, 80, .25), 0 8px 32px rgba(63, 185, 80, .25);
-    --glow-blue: 0 0 0 1px rgba(88, 166, 255, .25), 0 8px 32px rgba(88, 166, 255, .25);
+    /* Shadow — layered, elevated */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, .35), 0 8px 24px rgba(0, 0, 0, .25);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, .4), 0 18px 50px rgba(0, 0, 0, .45);
+    --shadow-lg: 0 8px 30px rgba(0, 0, 0, .5), 0 40px 90px rgba(0, 0, 0, .6);
+    --glow-green: 0 0 0 1px rgba(52, 211, 153, .3), 0 8px 40px rgba(34, 197, 94, .35);
+    --glow-blue: 0 0 0 1px rgba(110, 231, 183, .3), 0 8px 40px rgba(16, 185, 129, .3);
 
     /* Typography */
-    --font-body: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Manrope', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Sora', 'Manrope', system-ui, sans-serif;
     --font-pixel: 'Press Start 2P', 'JetBrains Mono', monospace;
     --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
@@ -2280,6 +2281,758 @@ code {
     .to-top { width: 42px; height: 42px; bottom: 18px; right: 18px; }
 }
 
+/* ==========================================================================
+   ★★★  PREMIUM CINEMATIC REDESIGN LAYER  ★★★
+   Additive visual overhaul — AAA game-launcher aesthetic.
+   Content, structure, links & JS untouched. Pure appearance.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   R0 · GLOBAL ATMOSPHERE
+-------------------------------------------------------------------------- */
+body {
+    background: var(--bg);
+    letter-spacing: -.005em;
+}
+
+/* Subtle film grain over everything for cinematic texture */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: .04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Custom scrollbar → emerald */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--green), var(--green-2));
+}
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #5eead4, var(--green));
+}
+::selection { background: var(--green); color: #06231a; }
+
+/* --------------------------------------------------------------------------
+   R1 · MULTI-LAYER BACKGROUND (gradient · landscape · fog · rays)
+-------------------------------------------------------------------------- */
+.bg-gradient {
+    background:
+        radial-gradient(1200px 780px at 78% -12%, rgba(52, 211, 153, .16), transparent 60%),
+        radial-gradient(980px 640px at -8% 24%, rgba(16, 185, 129, .12), transparent 60%),
+        radial-gradient(900px 900px at 50% 118%, rgba(34, 197, 94, .10), transparent 62%),
+        linear-gradient(180deg, #060608 0%, #09090B 46%, #060608 100%);
+}
+
+/* Layer 2 — blurred Minecraft-style landscape silhouette (pure CSS, no assets) */
+.bg-landscape {
+    position: absolute;
+    left: -6%;
+    right: -6%;
+    bottom: -4%;
+    height: 62vh;
+    will-change: transform;
+    filter: blur(24px) saturate(120%);
+    opacity: .6;
+    background:
+        /* distant emerald horizon glow */
+        radial-gradient(120% 90% at 50% 118%, rgba(52, 211, 153, .22), transparent 60%),
+        /* layered blocky hills */
+        linear-gradient(180deg, transparent 0%, transparent 42%, rgba(9, 30, 24, .9) 42%, rgba(7, 20, 16, .96) 100%),
+        conic-gradient(from 90deg at 18% 100%, rgba(13, 44, 34, .9), rgba(9, 28, 22, .9) 40%, transparent 41%),
+        conic-gradient(from 90deg at 62% 100%, rgba(11, 38, 30, .9), rgba(8, 24, 19, .9) 46%, transparent 47%),
+        conic-gradient(from 90deg at 88% 100%, rgba(14, 48, 38, .85), rgba(9, 30, 24, .9) 44%, transparent 45%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 55%, #000 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 55%, #000 100%);
+}
+
+/* Layer 3 — drifting volumetric fog */
+.bg-fog {
+    position: absolute;
+    inset: -20% -20% auto -20%;
+    top: 30%;
+    height: 70vh;
+    pointer-events: none;
+    opacity: .5;
+    background:
+        radial-gradient(60% 40% at 30% 50%, rgba(52, 211, 153, .10), transparent 70%),
+        radial-gradient(50% 40% at 72% 40%, rgba(255, 255, 255, .05), transparent 70%);
+    filter: blur(40px);
+    animation: fogDrift 34s ease-in-out infinite alternate;
+}
+.bg-fog-2 {
+    top: 8%;
+    opacity: .35;
+    animation-duration: 46s;
+    animation-direction: alternate-reverse;
+    background:
+        radial-gradient(55% 45% at 60% 50%, rgba(16, 185, 129, .10), transparent 70%),
+        radial-gradient(45% 40% at 20% 60%, rgba(52, 211, 153, .07), transparent 70%);
+}
+@keyframes fogDrift {
+    0%   { transform: translate3d(-4%, 0, 0) scale(1); }
+    100% { transform: translate3d(6%, -3%, 0) scale(1.12); }
+}
+
+/* Layer 5 — subtle animated volumetric light rays */
+.bg-rays {
+    position: absolute;
+    inset: -30% 0 auto 0;
+    top: -20%;
+    height: 130vh;
+    pointer-events: none;
+    opacity: .5;
+    background:
+        repeating-linear-gradient(101deg,
+            transparent 0, transparent 60px,
+            rgba(52, 211, 153, .035) 60px, rgba(52, 211, 153, .035) 61px,
+            transparent 61px, transparent 140px);
+    mix-blend-mode: screen;
+    transform-origin: top center;
+    animation: raySway 20s ease-in-out infinite alternate;
+    -webkit-mask-image: radial-gradient(80% 60% at 70% 0%, #000, transparent 75%);
+    mask-image: radial-gradient(80% 60% at 70% 0%, #000, transparent 75%);
+}
+@keyframes raySway {
+    0%   { transform: rotate(-2deg) translateX(-2%); opacity: .35; }
+    100% { transform: rotate(2deg) translateX(2%); opacity: .6; }
+}
+
+.bg-grid {
+    opacity: .7;
+    will-change: transform;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, .022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .022) 1px, transparent 1px);
+}
+.bg-vignette {
+    background: radial-gradient(ellipse at center, transparent 46%, rgba(0, 0, 0, .7) 100%);
+}
+
+/* Spotlight cursor darkens surroundings, brightens center */
+.cursor-spotlight {
+    position: fixed;
+    top: 0; left: 0;
+    width: 620px;
+    height: 620px;
+    border-radius: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    background: radial-gradient(circle, rgba(52, 211, 153, .10) 0%, rgba(52, 211, 153, .04) 30%, transparent 68%);
+    transition: opacity .5s ease;
+    will-change: left, top;
+    mix-blend-mode: screen;
+}
+body.spotlight-on .cursor-spotlight { opacity: 1; }
+
+/* --------------------------------------------------------------------------
+   R2 · FLOATING MINECRAFT DECOR (very subtle, slow)
+-------------------------------------------------------------------------- */
+.floaties {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.floatie {
+    position: absolute;
+    left: var(--fx);
+    top: var(--fy);
+    width: 46px;
+    height: 46px;
+    opacity: .22;
+    will-change: transform;
+    filter: drop-shadow(0 12px 26px rgba(0, 0, 0, .5));
+    animation: floatieDrift 26s ease-in-out infinite;
+    animation-delay: var(--fd, 0s);
+}
+@keyframes floatieDrift {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-38px) rotate(180deg); }
+}
+/* Grass block */
+.floatie-grass {
+    background:
+        linear-gradient(180deg, #34D399 0 34%, #7a5230 34% 42%, #5a3c22 42% 100%);
+    border-radius: 8px;
+    box-shadow: inset -6px -6px 0 rgba(0,0,0,.25), inset 6px 6px 0 rgba(255,255,255,.15);
+}
+/* Diamond */
+.floatie-diamond {
+    background: linear-gradient(135deg, #67e8f9, #22d3ee 55%, #0e7490);
+    clip-path: polygon(50% 0, 85% 38%, 50% 100%, 15% 38%);
+    box-shadow: inset 0 0 14px rgba(255,255,255,.4);
+}
+/* Torch */
+.floatie-torch {
+    background:
+        radial-gradient(circle at 50% 22%, #fbbf24 0 14%, #f59e0b 14% 22%, transparent 24%),
+        linear-gradient(180deg, transparent 24%, #7a5230 24% 100%);
+    border-radius: 4px;
+}
+/* Book */
+.floatie-book {
+    background: linear-gradient(90deg, #10b981 0 18%, #ecfdf5 18% 100%);
+    border-radius: 4px 8px 8px 4px;
+    box-shadow: inset -4px 0 0 rgba(0,0,0,.15), inset 4px 0 0 #059669;
+}
+/* Leaf */
+.floatie-leaf {
+    background: radial-gradient(circle at 30% 30%, #4ade80, #16a34a 70%);
+    border-radius: 0 60% 0 60%;
+    box-shadow: inset 0 0 12px rgba(0,0,0,.25);
+}
+
+/* --------------------------------------------------------------------------
+   R3 · TYPOGRAPHY — premium display headings
+-------------------------------------------------------------------------- */
+.section-title,
+.dl-title,
+.step-title,
+.support-title,
+.notice-title,
+.shader-table-title,
+.rail-title {
+    font-family: var(--font-display);
+}
+.section-title {
+    font-weight: 800;
+    letter-spacing: -.03em;
+    font-size: clamp(30px, 4.4vw, 52px);
+    background: linear-gradient(176deg, #fff 0%, #fff 40%, #86efac 130%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    filter: drop-shadow(0 6px 30px rgba(52, 211, 153, .18));
+}
+.kicker {
+    color: var(--green);
+    border-color: rgba(52, 211, 153, .3);
+    background: rgba(52, 211, 153, .08);
+    box-shadow: 0 0 24px rgba(52, 211, 153, .12), inset 0 1px 0 rgba(255,255,255,.08);
+    backdrop-filter: blur(8px);
+}
+.section-sub { color: var(--text-2); }
+
+/* Pixel headings: keep pixel font but add cinematic emerald glow */
+.hero-headline {
+    background: linear-gradient(180deg, #fff 0%, #d1fae5 60%, #34D399 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 4px 24px rgba(52, 211, 153, .35)) drop-shadow(0 0 60px rgba(34, 197, 94, .25));
+    /* Perfectly centered & evenly wrapped. text-wrap: balance distributes the
+       words across lines so no line dangles a lone "·". */
+    text-align: center;
+    text-wrap: balance;
+    width: 100%;
+    padding-left: 0;
+}
+.hero-title { text-align: center; }
+
+/* --------------------------------------------------------------------------
+   R4 · GLASS PRIMITIVE — floating panels with reflection + highlight
+-------------------------------------------------------------------------- */
+.glass {
+    background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02)),
+        var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    box-shadow:
+        var(--shadow-md),
+        inset 0 1px 0 rgba(255, 255, 255, .12),
+        inset 0 0 0 1px rgba(255, 255, 255, .015);
+    position: relative;
+    isolation: isolate;
+    transition:
+        transform .5s cubic-bezier(.16,1,.3,1),
+        border-color .4s, background .4s, box-shadow .4s;
+}
+/* Inner top-edge highlight (reflection) */
+.glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(180deg, rgba(255,255,255,.28), transparent 30%, transparent 70%, rgba(52,211,153,.14));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 2;
+    opacity: .8;
+}
+.glass:hover {
+    border-color: rgba(52, 211, 153, .28);
+    background:
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03)),
+        var(--card-hi);
+    box-shadow:
+        var(--shadow-lg),
+        0 0 44px rgba(52, 211, 153, .16),
+        inset 0 1px 0 rgba(255, 255, 255, .16);
+}
+.glass-inset {
+    background: rgba(0, 0, 0, .3);
+    border: 1px solid var(--border);
+    box-shadow: inset 0 2px 12px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+/* Interactive spotlight — cards brighten as cursor approaches (JS-driven vars) */
+.tilt-card {
+    transform:
+        perspective(1000px)
+        rotateX(var(--ry, 0deg))
+        rotateY(var(--rx, 0deg))
+        translateY(var(--lift, 0px))
+        scale(var(--scl, 1));
+    transform-style: preserve-3d;
+}
+/* Per-card proximity glow uses a dedicated overlay node (added in JS) so it
+   never collides with cards that already use ::after (REQUIRED badge / active rail). */
+.card-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 3;
+    opacity: var(--glow, 0);
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(52, 211, 153, .16), transparent 60%);
+    transition: opacity .4s ease;
+}
+
+/* --------------------------------------------------------------------------
+   R5 · BUTTONS — premium launcher buttons w/ ripple + shine
+-------------------------------------------------------------------------- */
+.btn {
+    border-radius: 14px;
+    letter-spacing: .01em;
+    font-weight: 700;
+    transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s, background .35s, color .3s;
+}
+.btn-primary {
+    background: linear-gradient(180deg, #4ee0a8 0%, var(--green) 40%, var(--green-2) 100%);
+    color: #052117;
+    box-shadow:
+        0 8px 28px rgba(34, 197, 94, .4),
+        0 2px 6px rgba(0,0,0,.3),
+        inset 0 1px 0 rgba(255, 255, 255, .5);
+}
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+        0 16px 44px rgba(34, 197, 94, .55),
+        0 0 30px rgba(52, 211, 153, .4),
+        inset 0 1px 0 rgba(255, 255, 255, .6);
+}
+.btn-accent {
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
+    color: #052117;
+    box-shadow: 0 8px 28px rgba(16, 185, 129, .4), inset 0 1px 0 rgba(255,255,255,.5);
+}
+.btn-ghost {
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid var(--border);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+.btn-ghost:hover {
+    background: rgba(52, 211, 153, .1);
+    border-color: rgba(52, 211, 153, .35);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 34px rgba(0,0,0,.4), 0 0 24px rgba(52, 211, 153, .2);
+}
+/* Sweeping shine across primary buttons */
+.btn-primary::after,
+.btn-accent::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.5), transparent);
+    transform: skewX(-18deg);
+    transition: left .7s cubic-bezier(.16,1,.3,1);
+    pointer-events: none;
+}
+.btn-primary:hover::after,
+.btn-accent:hover::after { left: 150%; }
+/* icon nudge */
+.btn svg { transition: transform .35s cubic-bezier(.16,1,.3,1); }
+.btn:hover svg { transform: translateY(2px); }
+.btn-ghost:hover svg,
+.scroll-indicator:hover svg { transform: translateY(2px); }
+/* Ripple */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    background: rgba(255, 255, 255, .45);
+    animation: rippleGo .6s ease-out;
+    pointer-events: none;
+    z-index: 4;
+}
+@keyframes rippleGo {
+    to { transform: scale(3.2); opacity: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   R6 · NAVBAR — floating rounded glass pill
+-------------------------------------------------------------------------- */
+.navbar { padding: 18px 0; }
+.navbar .nav-inner {
+    background: rgba(16, 17, 20, .5);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 10px 14px 10px 18px;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow:
+        var(--shadow-md),
+        inset 0 1px 0 rgba(255,255,255,.1);
+    transition: border-color .4s, box-shadow .4s, background .4s;
+}
+.navbar.scrolled {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 0;
+    padding: 12px 0;
+}
+.navbar.scrolled .nav-inner {
+    background: rgba(9, 9, 11, .72);
+    border-color: rgba(52, 211, 153, .18);
+    box-shadow: var(--shadow-lg), 0 0 40px rgba(34,197,94,.08), inset 0 1px 0 rgba(255,255,255,.1);
+}
+.brand-mark {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-2) 100%);
+    box-shadow: 0 6px 20px rgba(34, 197, 94, .45), inset 0 1px 0 rgba(255,255,255,.4);
+}
+.brand-title { font-family: var(--font-display); letter-spacing: .06em; }
+.nav-links {
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+.nav-links a.active {
+    color: #06231a;
+    background: linear-gradient(180deg, var(--green), var(--green-2));
+    box-shadow: 0 4px 14px rgba(34,197,94,.35);
+}
+.nav-links a:hover { color: var(--text); background: rgba(52, 211, 153, .1); }
+
+/* --------------------------------------------------------------------------
+   R7 · HERO — cinematic
+-------------------------------------------------------------------------- */
+.hero-badge {
+    background: rgba(52, 211, 153, .09);
+    border: 1px solid rgba(52, 211, 153, .28);
+    color: var(--green);
+    box-shadow: 0 0 30px rgba(52,211,153,.12), inset 0 1px 0 rgba(255,255,255,.1);
+}
+.hero-badge .dot { background: var(--green); box-shadow: 0 0 14px var(--green); }
+.hero-eyebrow {
+    color: #86efac;
+    letter-spacing: .35em;
+    opacity: .9;
+}
+.stat-card {
+    background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.015)),
+        var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,.08);
+    backdrop-filter: blur(16px);
+}
+.stat-card:hover {
+    border-color: rgba(52, 211, 153, .35);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md), 0 0 34px rgba(52, 211, 153, .18);
+}
+.stat-num {
+    color: var(--green);
+    filter: drop-shadow(0 0 14px rgba(52,211,153,.4));
+}
+/* the long text stat stays readable */
+.stat-card:nth-child(3) .stat-num { font-size: 13px; line-height: 1.3; }
+
+.mouse { border-color: currentColor; }
+.wheel { background: currentColor; }
+.scroll-indicator:hover { color: var(--green); }
+
+/* Floating pixel blocks → softer emerald tones */
+.px-block { opacity: .5; border-radius: 5px; }
+
+/* --------------------------------------------------------------------------
+   R8 · DOWNLOAD CARDS — floating 3D glass w/ "REQUIRED" badge & glow art
+-------------------------------------------------------------------------- */
+.dl-card { border-radius: var(--r-xl); }
+.dl-art {
+    border-radius: var(--r-md);
+    border: 1px solid var(--border);
+    box-shadow: inset 0 2px 30px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.dl-art::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,.08), transparent 60%);
+    pointer-events: none;
+}
+.dl-art-mods   { background: linear-gradient(135deg, rgba(52, 211, 153, .22), rgba(16, 185, 129, .08)); }
+.dl-art-rp     { background: linear-gradient(135deg, rgba(110, 231, 183, .2), rgba(52, 211, 153, .1)); }
+.dl-art-shader { background: linear-gradient(135deg, rgba(240, 196, 25, .14), rgba(52, 211, 153, .14), rgba(16, 185, 129, .1)); }
+
+.dl-title { font-weight: 800; letter-spacing: -.02em; }
+.chip {
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid var(--border);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+}
+.chip-green { color: var(--green); border-color: rgba(52, 211, 153, .38); background: rgba(52, 211, 153, .1); }
+.chip-blue  { color: var(--accent); border-color: rgba(110, 231, 183, .38); background: rgba(110, 231, 183, .1); }
+.bullet { background: var(--green); box-shadow: 0 0 10px rgba(52, 211, 153, .7); }
+
+/* "REQUIRED / OPTIONAL" auto badge on each download card via chips already present.
+   Add an accent ring to the primary (Mods) card so the required pack pops. */
+.dl-grid .dl-card:first-child {
+    border-color: rgba(52, 211, 153, .22);
+    box-shadow: var(--shadow-md), 0 0 40px rgba(34,197,94,.1), inset 0 1px 0 rgba(255,255,255,.12);
+}
+.dl-grid .dl-card:first-child::after {
+    content: 'REQUIRED';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 3;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    padding: 5px 10px;
+    border-radius: 999px;
+    color: #06231a;
+    background: linear-gradient(180deg, var(--green), var(--green-2));
+    box-shadow: 0 4px 14px rgba(34,197,94,.4);
+}
+
+/* --------------------------------------------------------------------------
+   R9 · INSTALLATION — floating timeline w/ animated connectors
+-------------------------------------------------------------------------- */
+.rail-sticky {
+    background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.015)),
+        var(--card);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255,255,255,.1);
+}
+.rail-sticky::before { background: linear-gradient(90deg, var(--green), var(--accent-2)); }
+.rail-title { font-family: var(--font-display); }
+.rail-list::before { background: linear-gradient(180deg, rgba(52,211,153,.35), rgba(255,255,255,.05)); }
+.rail-list a.active,
+.rail-list a:hover { background: rgba(52, 211, 153, .1); }
+.rail-list a:hover .rail-num,
+.rail-list a.active .rail-num {
+    background: linear-gradient(180deg, var(--green), var(--green-2));
+    color: #06231a;
+    border-color: var(--green);
+    box-shadow: 0 0 20px rgba(52, 211, 153, .6);
+}
+.rail-list a.passed .rail-num {
+    background: rgba(52, 211, 153, .18);
+    color: var(--green);
+    border-color: rgba(52, 211, 153, .4);
+}
+.rail-progress span {
+    background: linear-gradient(90deg, var(--green), var(--accent));
+    box-shadow: 0 0 14px rgba(52, 211, 153, .7);
+}
+
+.step-card { border-radius: var(--r-xl); }
+.step-card.is-active {
+    border-color: rgba(52, 211, 153, .4);
+    box-shadow:
+        var(--shadow-lg),
+        0 0 0 1px rgba(52, 211, 153, .25),
+        0 0 50px rgba(34, 197, 94, .14),
+        inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+/* glowing left rail on the active step */
+.step-card.is-active::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 14%; bottom: 14%;
+    width: 3px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, var(--green), var(--accent-2));
+    box-shadow: 0 0 18px rgba(52,211,153,.7);
+    z-index: 3;
+}
+.step-num {
+    background: linear-gradient(135deg, rgba(52, 211, 153, .22), rgba(52, 211, 153, .04));
+    border: 1px solid rgba(52, 211, 153, .35);
+    color: var(--green);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 8px 24px rgba(34,197,94,.15);
+    font-family: var(--font-pixel);
+}
+.step-tag { color: var(--accent); }
+.step-title { font-weight: 800; letter-spacing: -.02em; }
+.step-list li:hover {
+    border-color: rgba(52, 211, 153, .3);
+    background: rgba(52, 211, 153, .06);
+}
+.li-num {
+    background: linear-gradient(180deg, var(--green), var(--green-2));
+    color: #06231a;
+    box-shadow: 0 4px 10px rgba(34,197,94,.3);
+}
+
+/* Callouts / notes recolored to emerald family */
+.note { background: rgba(110, 231, 183, .08); border-color: rgba(110, 231, 183, .25); }
+.note-icon { background: var(--accent); color: #06231a; }
+.callout-blue { background: rgba(110, 231, 183, .08); border-color: rgba(110, 231, 183, .25); }
+.callout-icon { background: var(--accent); color: #06231a; }
+.copy-tag { background: rgba(52, 211, 153, .16); color: var(--green); }
+.copy-tag:hover { background: rgba(52, 211, 153, .3); }
+.t-dir { color: var(--accent); }
+.folder-hint code { color: var(--text); }
+
+/* Shader table — emerald header */
+.shader-table th { background: linear-gradient(90deg, var(--green) 0%, var(--accent-2) 100%); color: #06231a; }
+.shader-table tbody tr:hover td { background: rgba(52, 211, 153, .07); }
+.shader-table-title { font-weight: 800; }
+
+/* --------------------------------------------------------------------------
+   R10 · SCREENSHOTS — premium tilted gallery w/ zoom, glow, reflection
+-------------------------------------------------------------------------- */
+.shot {
+    border-radius: var(--r-md);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    transform: rotate(var(--tilt, 0deg));
+    transition: transform .5s cubic-bezier(.16,1,.3,1), box-shadow .5s, border-color .5s;
+    position: relative;
+    overflow: hidden;
+}
+.shots .shot:nth-child(3n+1) { --tilt: -1.4deg; }
+.shots .shot:nth-child(3n+2) { --tilt: .8deg; }
+.shots .shot:nth-child(3n)   { --tilt: 1.4deg; }
+.shot img { transition: transform .6s cubic-bezier(.16,1,.3,1); }
+.shot:hover {
+    --tilt: 0deg;
+    transform: rotate(0deg) translateY(-6px) scale(1.02);
+    border-color: rgba(52, 211, 153, .4);
+    box-shadow: var(--shadow-lg), 0 0 40px rgba(52, 211, 153, .22);
+    z-index: 5;
+}
+.shot:hover img { transform: scale(1.08); }
+/* light reflection sweep */
+.shot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,.12) 50%, transparent 60%);
+    transform: translateX(-100%);
+    transition: transform .8s cubic-bezier(.16,1,.3,1);
+    pointer-events: none;
+}
+.shot:hover::before { transform: translateX(100%); }
+.shot figcaption { background: rgba(0, 0, 0, .35); }
+
+/* --------------------------------------------------------------------------
+   R11 · FAQ + SUPPORT + NOTICE + FOOTER
+-------------------------------------------------------------------------- */
+.faq-item summary:hover { color: var(--green); }
+.faq-icon { background: rgba(52, 211, 153, .14); }
+.faq-icon::before, .faq-icon::after { background: var(--green); }
+.faq-item[open] {
+    border-color: rgba(52, 211, 153, .35);
+    box-shadow: var(--shadow-md), 0 0 34px rgba(52,211,153,.1);
+}
+.faq-item[open] .faq-icon { background: var(--green); }
+.faq-item[open] .faq-icon::before, .faq-item[open] .faq-icon::after { background: #06231a; }
+
+.support-icon-admin { background: linear-gradient(135deg, var(--green), var(--green-2)); color: #06231a; box-shadow: 0 10px 30px rgba(34,197,94,.35); }
+.support-icon-mail  { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #06231a; box-shadow: 0 10px 30px rgba(16,185,129,.3); }
+.support-title { font-weight: 800; }
+
+.notice-card {
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow-lg), 0 0 50px rgba(240, 196, 25, .06);
+}
+.footer { background: rgba(6, 6, 8, .7); }
+.footer-title { font-family: var(--font-display); }
+.footer-links a:hover { color: var(--green); }
+
+.to-top:hover {
+    background: linear-gradient(180deg, var(--green), var(--green-2));
+    color: #06231a;
+    border-color: var(--green);
+    box-shadow: 0 12px 34px rgba(34,197,94,.45);
+}
+.toast { border-color: rgba(52, 211, 153, .35); }
+.toast::before { background: var(--green); color: #06231a; }
+.lightbox-close:hover { background: var(--green); color: #06231a; }
+
+/* --------------------------------------------------------------------------
+   R12 · RICHER REVEAL — blur + translate + scale (not a plain fade)
+-------------------------------------------------------------------------- */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(42px) scale(.985);
+    filter: blur(8px);
+    transition:
+        opacity .9s cubic-bezier(.16,1,.3,1),
+        transform .9s cubic-bezier(.16,1,.3,1),
+        filter .9s cubic-bezier(.16,1,.3,1);
+}
+[data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+}
+/* Once revealed, tilt-card regains transform control (beats .is-visible specificity
+   via the compound selector + source order) so 3D mouse tilt works. Default vars
+   resolve to an identity transform, so the resting state is visually unchanged. */
+.tilt-card.is-visible,
+[data-reveal].tilt-card.is-visible {
+    transform:
+        perspective(1000px)
+        rotateX(var(--ry, 0deg))
+        rotateY(var(--rx, 0deg))
+        translateY(var(--lift, 0px))
+        scale(var(--scl, 1));
+}
+
+/* --------------------------------------------------------------------------
+   R13 · REDUCED MOTION + RESPONSIVE GUARDS
+-------------------------------------------------------------------------- */
+@media (hover: none) {
+    .tilt-card { transform: none !important; }
+    .cursor-spotlight, .floaties { display: none; }
+}
+@media (max-width: 768px) {
+    .cursor-spotlight { display: none; }
+    .floatie { opacity: .12; }
+    .navbar .nav-inner { border-radius: 16px; }
+    .dl-grid .dl-card:first-child::after { top: 16px; right: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .bg-fog, .bg-rays, .floatie, .bg-grid { animation: none !important; }
+    [data-reveal] { opacity: 1; transform: none; filter: none; }
+    .cursor-spotlight { display: none; }
+}
+
 </style>
 </head>
 <body>
@@ -2287,9 +3040,25 @@ code {
     <!-- ====================== ANIMATED BACKGROUND CANVAS ====================== -->
     <div class="bg-stage" aria-hidden="true">
         <div class="bg-gradient"></div>
+        <div class="bg-landscape" data-parallax="0.15"></div>
+        <div class="bg-fog"></div>
+        <div class="bg-fog bg-fog-2"></div>
+        <div class="bg-rays"></div>
         <div class="bg-grid"></div>
         <canvas id="particles" class="bg-particles"></canvas>
         <div class="bg-vignette"></div>
+    </div>
+
+    <!-- ====================== SOFT SPOTLIGHT CURSOR ====================== -->
+    <div class="cursor-spotlight" id="cursorSpotlight" aria-hidden="true"></div>
+
+    <!-- ====================== FLOATING MINECRAFT DECOR ====================== -->
+    <div class="floaties" aria-hidden="true">
+        <span class="floatie floatie-grass" data-parallax="0.06" style="--fx:6%;--fy:22%;--fd:0s"></span>
+        <span class="floatie floatie-diamond" data-parallax="0.10" style="--fx:92%;--fy:30%;--fd:1.4s"></span>
+        <span class="floatie floatie-torch" data-parallax="0.08" style="--fx:12%;--fy:66%;--fd:2.1s"></span>
+        <span class="floatie floatie-book" data-parallax="0.05" style="--fx:88%;--fy:74%;--fd:.8s"></span>
+        <span class="floatie floatie-leaf" data-parallax="0.12" style="--fx:50%;--fy:12%;--fd:3s"></span>
     </div>
 
     <!-- ====================== NAVBAR ====================== -->
@@ -2343,7 +3112,7 @@ code {
 
                 <h1 class="hero-title" data-reveal>
                     <span class="hero-eyebrow">Minecraft Survival Server</span>
-                    <span class="hero-headline pixel-font">PLAY · BUILD · SURVIVE</span>
+                    <span class="hero-headline pixel-font">PLAY BUILD SURVIVE</span>
                 </h1>
 
                 <p class="hero-sub" data-reveal>
@@ -3631,6 +4400,105 @@ code {
             });
         });
         $$('img[data-src]').forEach(img => lazyIO.observe(img));
+    }
+
+    /* ==========================================================================
+       ★ PREMIUM CINEMATIC INTERACTIONS (additive) ★
+       Spotlight cursor · 3D tilt · ripple · parallax
+       ========================================================================== */
+    const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    /* --- 15 · SOFT SPOTLIGHT CURSOR ------------------------------------------ */
+    const spotlight = $('#cursorSpotlight');
+    if (spotlight && fine && !prefersReduced) {
+        let sx = window.innerWidth / 2, sy = window.innerHeight / 2;
+        let cx = sx, cy = sy, raf = null;
+        const render = () => {
+            cx += (sx - cx) * 0.16;
+            cy += (sy - cy) * 0.16;
+            spotlight.style.left = cx + 'px';
+            spotlight.style.top  = cy + 'px';
+            if (Math.abs(sx - cx) > 0.4 || Math.abs(sy - cy) > 0.4) {
+                raf = requestAnimationFrame(render);
+            } else { raf = null; }
+        };
+        on(window, 'mousemove', (e) => {
+            sx = e.clientX; sy = e.clientY;
+            document.body.classList.add('spotlight-on');
+            if (!raf) raf = requestAnimationFrame(render);
+        }, { passive: true });
+        on(window, 'mouseleave', () => document.body.classList.remove('spotlight-on'));
+    }
+
+    /* --- 16 · 3D TILT + PROXIMITY GLOW on glass cards ------------------------ */
+    if (fine && !prefersReduced) {
+        const tiltEls = $$('.dl-card, .stat-card, .support-card');
+        const MAX = 3; // degrees — spec cap
+        tiltEls.forEach(el => {
+            el.classList.add('tilt-card');
+            // dedicated glow overlay (avoids ::after collisions on badge/active cards)
+            const glowEl = document.createElement('span');
+            glowEl.className = 'card-glow';
+            el.appendChild(glowEl);
+            let hovering = false;
+            on(el, 'mouseenter', () => {
+                hovering = true;
+                el.style.setProperty('--lift', '-6px');
+                el.style.setProperty('--scl', '1.02');
+                el.style.setProperty('--glow', '1');
+            });
+            on(el, 'mousemove', (e) => {
+                if (!hovering) return;
+                const r = el.getBoundingClientRect();
+                const px = (e.clientX - r.left) / r.width;
+                const py = (e.clientY - r.top) / r.height;
+                el.style.setProperty('--rx', ((px - 0.5) * 2 * MAX).toFixed(2) + 'deg');
+                el.style.setProperty('--ry', ((0.5 - py) * 2 * MAX).toFixed(2) + 'deg');
+                el.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+                el.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+            });
+            on(el, 'mouseleave', () => {
+                hovering = false;
+                el.style.setProperty('--rx', '0deg');
+                el.style.setProperty('--ry', '0deg');
+                el.style.setProperty('--lift', '0px');
+                el.style.setProperty('--scl', '1');
+                el.style.setProperty('--glow', '0');
+            });
+        });
+    }
+
+    /* --- 17 · BUTTON RIPPLE -------------------------------------------------- */
+    $$('.btn').forEach(btn => {
+        on(btn, 'click', (e) => {
+            const r = btn.getBoundingClientRect();
+            const size = Math.max(r.width, r.height);
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple';
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (e.clientX - r.left - size / 2) + 'px';
+            ripple.style.top  = (e.clientY - r.top  - size / 2) + 'px';
+            btn.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 650);
+        });
+    });
+
+    /* --- 18 · SCROLL PARALLAX for background + floaties --------------------- */
+    if (!prefersReduced) {
+        const parallaxEls = $$('[data-parallax]');
+        let pTicking = false;
+        const applyParallax = () => {
+            const y = window.scrollY;
+            parallaxEls.forEach(el => {
+                const speed = parseFloat(el.dataset.parallax) || 0.1;
+                el.style.transform = `translate3d(0, ${(-y * speed).toFixed(1)}px, 0)`;
+            });
+            pTicking = false;
+        };
+        on(window, 'scroll', () => {
+            if (!pTicking) { requestAnimationFrame(applyParallax); pTicking = true; }
+        }, { passive: true });
+        applyParallax();
     }
 
 })();
